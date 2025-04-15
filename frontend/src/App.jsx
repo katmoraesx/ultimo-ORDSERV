@@ -34,8 +34,8 @@ function App() {
         {/* Header elegante e criativo */}
         <header className="bg-white/30 backdrop-blur-xl shadow-md rounded-b-3xl py-8 px-6 border-b border-white/20">
           <div className="container mx-auto text-center">
-            <h1 className="text-5xl font-bold text-[#508AA8] drop-shadow-sm">🔧 OrdsServ</h1>
-            <p className="text-md mt-2 text-[#7FB7E0] tracking-wide">Gestão moderna, visual encantador 💙</p>
+            <h1 className="text-5xl font-bold text-[#508AA8] drop-shadow-sm">🔧 Ordem de Serviço</h1>
+            <p className="text-md mt-2 text-[#7FB7E0] tracking-wide">Gestão moderna 💙</p>
           </div>
         </header>
 

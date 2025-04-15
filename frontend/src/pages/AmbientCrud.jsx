@@ -57,60 +57,61 @@ const AmbientCrud = () => {
     const listChildren = () => {
         if (ambientes.length > 0) {
             return ambientes.map((ambiente) => (
-                <li key={ambiente.id} className="flex justify-between items-center p-4 border-b border-gray-200">
+                <li key={ambiente.id} className="flex justify-between items-center p-4 border-b border-sky-200 hover:bg-sky-50 rounded-lg transition-all">
                     <div>
-                        <p><strong>{ambiente.ni}</strong> - {ambiente.nome}</p>
+                        <p className="font-semibold text-lg text-sky-800">{ambiente.ni}</p>
+                        <p className="text-gray-600">{ambiente.nome}</p>
                     </div>
-                    <div className="space-x-2">
+                    <div className="space-x-4">
                         <button
                             onClick={() => handleEditAmbiente(ambiente)}
-                            className="text-sky-500 hover:text-sky-700"
+                            className="text-sky-500 hover:text-sky-700 transition"
                         >
-                            Edit
+                            Editar
                         </button>
                         <button
                             onClick={() => handleDeleteAmbiente(ambiente.id)}
-                            className="text-red-500 hover:text-red-700"
+                            className="text-red-500 hover:text-red-700 transition"
                         >
-                            Delete
+                            Deletar
                         </button>
                     </div>
                 </li>
             ));
         } else {
-            return <p className="text-center text-gray-600">No ambientes found.</p>;
+            return <p className="text-center text-gray-600">Nenhum ambiente encontrado.</p>;
         }
     };
 
     return (
         <div className="container mx-auto p-6">
-            <h2 className="text-3xl font-semibold text-center text-sky-700 mb-6">Manage Ambientes</h2>
+            <h2 className="text-3xl font-semibold text-center text-sky-700 mb-8">🌍 Gerenciar Ambientes</h2>
 
-            <div className="bg-white p-6 rounded-lg shadow-lg mb-6">
-                <h3 className="text-2xl font-semibold text-sky-600 mb-4">
-                    {editingAmbiente ? 'Edit Ambiente' : 'Create New Ambiente'}
+            <div className="bg-white p-6 rounded-3xl shadow-lg mb-8 max-w-3xl mx-auto transition-all">
+                <h3 className="text-2xl font-semibold text-sky-600 mb-6 text-center">
+                    {editingAmbiente ? '✏️ Editar Ambiente' : '➕ Criar Novo Ambiente'}
                 </h3>
-                <div className="space-y-4">
+                <div className="space-y-6">
                     <input
                         type="text"
-                        placeholder="NI"
+                        placeholder="Número de Identificação (NI)"
                         value={newAmbiente.ni}
                         onChange={(e) => setNewAmbiente({ ...newAmbiente, ni: e.target.value })}
-                        className="w-full p-3 border border-sky-200 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-400"
+                        className="w-full p-4 rounded-lg border border-sky-200 bg-[#F7FAFC] focus:outline-none focus:ring-2 focus:ring-sky-400 transition"
                     />
                     <input
                         type="text"
                         placeholder="Nome"
                         value={newAmbiente.nome}
                         onChange={(e) => setNewAmbiente({ ...newAmbiente, nome: e.target.value })}
-                        className="w-full p-3 border border-sky-200 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-400"
+                        className="w-full p-4 rounded-lg border border-sky-200 bg-[#F7FAFC] focus:outline-none focus:ring-2 focus:ring-sky-400 transition"
                     />
 
                     <button
                         onClick={editingAmbiente ? handleUpdateAmbiente : handleCreateAmbiente}
-                        className="w-full py-3 bg-sky-400 text-white font-semibold rounded-md hover:bg-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-300"
+                        className="w-full py-3 bg-sky-400 text-white font-semibold rounded-lg hover:bg-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-300 transition-all"
                     >
-                        {editingAmbiente ? 'Update Ambiente' : 'Create Ambiente'}
+                        {editingAmbiente ? 'Atualizar Ambiente' : 'Criar Ambiente'}
                     </button>
                 </div>
             </div>

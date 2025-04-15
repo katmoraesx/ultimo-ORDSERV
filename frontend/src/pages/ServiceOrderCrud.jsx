@@ -101,52 +101,52 @@ const ServiceOrderCrud = () => {
   const listChildren = () => {
     if (Array.isArray(orders) && orders.length > 0) {
       return orders.map((order) => (
-        <li key={order.id} className="flex justify-between items-center p-4 border-b border-gray-200">
+        <li key={order.id} className="flex justify-between items-center p-4 border-b border-gray-200 rounded-lg hover:bg-gray-50 transition-all">
           <div>
-            <p><strong>{order.descricao}</strong></p>
-            <p>Status: {order.status} | Prioridade: {order.prioridade}</p>
+            <p className="font-semibold text-lg text-gray-800">{order.descricao}</p>
+            <p className="text-gray-600 text-sm">Status: {order.status} | Prioridade: {order.prioridade}</p>
           </div>
-          <div className="space-x-2">
+          <div className="space-x-4">
             <button
               onClick={() => handleEditOrder(order)}
-              className="text-blue-500 hover:text-blue-700"
+              className="text-blue-500 hover:text-blue-700 transition"
             >
-              Edit
+              Editar
             </button>
             <button
               onClick={() => handleDeleteOrder(order.id)}
-              className="text-red-500 hover:text-red-700"
+              className="text-red-500 hover:text-red-700 transition"
             >
-              Delete
+              Deletar
             </button>
           </div>
         </li>
       ));
     } else {
-      return <p className="text-center text-gray-600">No service orders found.</p>;
+      return <p className="text-center text-gray-600">Nenhuma ordem de serviço encontrada.</p>;
     }
   };
 
   return (
     <div className="container mx-auto p-6">
-      <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Service Orders</h2>
+      <h2 className="text-3xl font-bold text-center text-[#2C3E50] mb-8">📋 Ordens de Serviço</h2>
 
-      <div className="bg-white p-6 rounded-lg shadow-lg mb-6">
-        <h3 className="text-2xl font-semibold text-gray-700 mb-4">
-          {editingOrder ? 'Edit Order' : 'Create New Order'}
+      <div className="bg-white shadow-lg rounded-3xl p-6 mb-8 max-w-3xl mx-auto transition-all">
+        <h3 className="text-2xl font-semibold text-[#2C3E50] mb-6 text-center">
+          {editingOrder ? '✏️ Editar Ordem' : '➕ Criar Nova Ordem'}
         </h3>
-        <div className="space-y-4">
+        <div className="space-y-6">
           <input
             type="text"
-            placeholder="Description"
+            placeholder="Descrição da Ordem"
             value={newOrder.descricao}
             onChange={(e) => setNewOrder({ ...newOrder, descricao: e.target.value })}
-            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full p-4 rounded-lg border border-gray-300 bg-[#F7FAFC] focus:ring-2 focus:ring-[#4A90E2] transition"
           />
           <select
             value={newOrder.status}
             onChange={(e) => setNewOrder({ ...newOrder, status: e.target.value })}
-            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full p-4 rounded-lg border border-gray-300 bg-[#F7FAFC] focus:ring-2 focus:ring-[#4A90E2] transition"
           >
             <option value="iniciada">Iniciada</option>
             <option value="em andamento">Em Andamento</option>
@@ -156,7 +156,7 @@ const ServiceOrderCrud = () => {
           <select
             value={newOrder.prioridade}
             onChange={(e) => setNewOrder({ ...newOrder, prioridade: e.target.value })}
-            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full p-4 rounded-lg border border-gray-300 bg-[#F7FAFC] focus:ring-2 focus:ring-[#4A90E2] transition"
           >
             <option value="alta">Alta</option>
             <option value="media">Média</option>
@@ -165,9 +165,9 @@ const ServiceOrderCrud = () => {
           <select
             value={newOrder.ambiente}
             onChange={(e) => setNewOrder({ ...newOrder, ambiente: e.target.value })}
-            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full p-4 rounded-lg border border-gray-300 bg-[#F7FAFC] focus:ring-2 focus:ring-[#4A90E2] transition"
           >
-            <option value="">Select Ambiente</option>
+            <option value="">Selecione o Ambiente</option>
             {ambientes.map((ambiente) => (
               <option key={ambiente.id} value={ambiente.id}>
                 {ambiente.nome}
@@ -177,9 +177,9 @@ const ServiceOrderCrud = () => {
           <select
             value={newOrder.manutentor}
             onChange={(e) => setNewOrder({ ...newOrder, manutentor: e.target.value })}
-            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full p-4 rounded-lg border border-gray-300 bg-[#F7FAFC] focus:ring-2 focus:ring-[#4A90E2] transition"
           >
-            <option value="">Select Manutentor</option>
+            <option value="">Selecione o Manutentor</option>
             {manutentores.map((manutentor) => (
               <option key={manutentor.id} value={manutentor.id}>
                 {manutentor.nome}
@@ -189,9 +189,9 @@ const ServiceOrderCrud = () => {
 
           <button
             onClick={editingOrder ? handleUpdateOrder : handleCreateOrder}
-            className="w-full py-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full py-3 bg-[#4A90E2] text-white font-semibold rounded-lg hover:bg-[#357ABD] transition-all"
           >
-            {editingOrder ? 'Update Order' : 'Create Order'}
+            {editingOrder ? 'Atualizar Ordem' : 'Criar Ordem'}
           </button>
         </div>
       </div>

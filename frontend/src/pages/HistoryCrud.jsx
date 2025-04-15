@@ -85,38 +85,38 @@ const HistoricoCrud = () => {
                             onClick={() => handleEditHistorico(historico)}
                             className="text-blue-500 hover:text-blue-700"
                         >
-                            Edit
+                            Editar
                         </button>
                         <button
                             onClick={() => handleDeleteHistorico(historico.id)}
                             className="text-red-500 hover:text-red-700"
                         >
-                            Delete
+                            Deletar
                         </button>
                     </div>
                 </li>
             ));
         } else {
-            return <p className="text-center text-gray-600">No historicos found.</p>;
+            return <p className="text-center text-gray-600">Nenhum histórico encontrado.</p>;
         }
     };
 
     return (
         <div className="container mx-auto p-6">
-            <h2 className="text-3xl font-semibold text-center text-gray-800 mb-6">Manage Historicos</h2>
+            <h2 className="text-3xl font-semibold text-center text-blue-600 mb-6">Gerenciar Históricos</h2>
 
             <div className="bg-white p-6 rounded-lg shadow-lg mb-6">
-                <h3 className="text-2xl font-semibold text-gray-700 mb-4">
-                    {editingHistorico ? 'Edit Historico' : 'Create New Historico'}
+                <h3 className="text-2xl font-semibold text-blue-600 mb-4 text-center">
+                    {editingHistorico ? 'Editar Histórico' : 'Criar Novo Histórico'}
                 </h3>
                 <div className="space-y-4">
                     {/* Select dropdown para ordens de serviço */}
                     <select
                         value={newHistorico.ordem}
                         onChange={(e) => setNewHistorico({ ...newHistorico, ordem: e.target.value })}
-                        className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full p-3 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
-                        <option value="">Select Ordem</option>
+                        <option value="">Selecione a Ordem</option>
                         {orders.map((order) => (
                             <option key={order.id} value={order.id}>
                                 {order.descricao}
@@ -129,14 +129,14 @@ const HistoricoCrud = () => {
                         placeholder="Data de Encerramento"
                         value={newHistorico.data_encerramento}
                         onChange={(e) => setNewHistorico({ ...newHistorico, data_encerramento: e.target.value })}
-                        className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full p-3 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
 
                     <button
                         onClick={editingHistorico ? handleUpdateHistorico : handleCreateHistorico}
-                        className="w-full py-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        className="w-full py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
                     >
-                        {editingHistorico ? 'Update Historico' : 'Create Historico'}
+                        {editingHistorico ? 'Atualizar Histórico' : 'Criar Histórico'}
                     </button>
                 </div>
             </div>

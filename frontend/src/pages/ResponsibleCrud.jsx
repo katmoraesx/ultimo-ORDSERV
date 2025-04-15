@@ -82,61 +82,70 @@ const ResponsibleCrud = () => {
     const listChildren = () => {
         if (Array.isArray(responsaveis) && responsaveis.length > 0) {
             return responsaveis.map((responsavel) => (
-                <li key={responsavel.id} className="flex justify-between items-center py-2">
-                    <span>{responsavel.nome} - {responsavel.ni}</span>
+                <li key={responsavel.id} className="flex justify-between items-center p-4 bg-white shadow-md rounded-lg hover:bg-blue-50">
                     <div>
+                        <p className="text-lg font-semibold text-blue-700">{responsavel.nome}</p>
+                        <p className="text-sm text-gray-600">{responsavel.ni}</p>
+                    </div>
+                    <div className="space-x-4">
                         <button
                             onClick={() => handleEditResponsavel(responsavel)}
-                            className="text-teal-500 hover:text-teal-700 mr-2"
+                            className="text-blue-500 hover:text-blue-700"
                         >
-                            Edit
+                            Editar
                         </button>
                         <button
                             onClick={() => handleDeleteResponsavel(responsavel.id)}
                             className="text-red-500 hover:text-red-700"
                         >
-                            Delete
+                            Deletar
                         </button>
                     </div>
                 </li>
             ));
         } else {
-            return <p>No responsaveis found.</p>;
+            return <p className="text-center text-gray-600">Nenhum responsável encontrado.</p>;
         }
     };
 
     return (
-        <div className="max-w-2xl mx-auto p-4">
-            <h2 className="text-2xl font-bold mb-4">Responsaveis</h2>
+        <div className="max-w-3xl mx-auto p-6">
+            <h2 className="text-3xl font-semibold text-center text-blue-600 mb-8">Gerenciar Responsáveis</h2>
 
+            {/* Exibição da mensagem de erro */}
             {errorMessage && (
-                <div className="bg-red-100 text-red-700 p-2 mb-4 rounded">
+                <div className="bg-red-100 text-red-700 p-4 mb-6 rounded-lg shadow-md">
                     {errorMessage}
                 </div>
             )}
 
-            <div className="mb-4">
-                <input
-                    type="text"
-                    placeholder="NI"
-                    value={newResponsavel.ni}
-                    onChange={(e) => setNewResponsavel({ ...newResponsavel, ni: e.target.value })}
-                    className="border p-2 rounded mr-2"
-                />
-                <input
-                    type="text"
-                    placeholder="Nome"
-                    value={newResponsavel.nome}
-                    onChange={(e) => setNewResponsavel({ ...newResponsavel, nome: e.target.value })}
-                    className="border p-2 rounded mr-2"
-                />
-                <button
-                    onClick={editingResponsavel ? handleUpdateResponsavel : handleCreateResponsavel}
-                    disabled={loading}
-                    className="bg-teal-600 text-white p-2 rounded"
-                >
-                    {loading ? 'Processing...' : editingResponsavel ? 'Update Responsavel' : 'Create Responsavel'}
-                </button>
+            <div className="bg-white p-6 rounded-xl shadow-lg mb-8">
+                <h3 className="text-2xl font-semibold text-blue-600 mb-4 text-center">
+                    {editingResponsavel ? 'Editar Responsável' : 'Criar Novo Responsável'}
+                </h3>
+                <div className="space-y-4">
+                    <input
+                        type="text"
+                        placeholder="Número de Identificação (NI)"
+                        value={newResponsavel.ni}
+                        onChange={(e) => setNewResponsavel({ ...newResponsavel, ni: e.target.value })}
+                        className="w-full p-4 border border-blue-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    />
+                    <input
+                        type="text"
+                        placeholder="Nome"
+                        value={newResponsavel.nome}
+                        onChange={(e) => setNewResponsavel({ ...newResponsavel, nome: e.target.value })}
+                        className="w-full p-4 border border-blue-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    />
+                    <button
+                        onClick={editingResponsavel ? handleUpdateResponsavel : handleCreateResponsavel}
+                        disabled={loading}
+                        className="w-full py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                    >
+                        {loading ? 'Processando...' : editingResponsavel ? 'Atualizar Responsável' : 'Criar Responsável'}
+                    </button>
+                </div>
             </div>
 
             <ul className="space-y-4">
